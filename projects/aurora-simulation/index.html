@@ -51,13 +51,31 @@
         While preparing the project specification for my course coordinator, I recognized that tackling both of these aspects simultaneously might be too ambitious and difficult for the scope of the course. As a result, I decided to narrow my focus to the animation of the aurora itself, leaving the shading for later. 
       </p>
       <p>
-        I hope to later enhance the simulation by integrating existing shaders to improve the visual appeal. For now, I’ll prioritize perfecting the fluid simulation and the movement of the aurora, and will revisit the shading aspect once the core simulation is solid.
+        I hope to later enhance the simulation by integrating existing shaders to improve the visual appeal. For now, I'll prioritize perfecting the fluid simulation and the movement of the aurora, and will revisit the shading aspect once the core simulation is solid.
       </p>
     </li>
 
     <li>
-      <h3>3. Fluid Simulation</h3>
-    </li>
+      <h3>3. 2D Fluid Simulation</h3>
+<p>
+  I just finished building the 2D fluid solver that will drive the aurora simulation. 
+  It's based on two incredibly helpful guides — <em>Fluid Simulation for Dummies</em> by Mike Ash and 
+  <em>Real-Time Fluid Dynamics for Games</em> by Jos Stam. These resources were essential for implementing the core fluid dynamics.
+</p>
+<p>
+  The solver produces beautifully soft, cloudy motion — exactly the effect I'm aiming for the auroras. 
+  The next step is to guide the flow so it mimics how the aurora naturally moves across the sky.
+</p>
+<p>
+  Here's a preview of what it looks like in action. The green coloring was added for aesthetic purposes, 
+  and I think it really helps to visualize what the final simulation might look like.
+</p>
+<div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+  <video width="50%" height="auto" controls>
+    <source src="vid/video2.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
   </ul>
 
   <footer>
