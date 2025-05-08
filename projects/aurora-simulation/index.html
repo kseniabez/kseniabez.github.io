@@ -76,6 +76,55 @@
     Your browser does not support the video tag.
   </video>
 </div>
+</li>
+
+<li>
+  <h3>4. Aurora Motion – Spiral Simulation Phases</h3>
+  <p>
+    After getting the fluid simulation running, I moved on to the core of the project: shaping how the aurora moves. 
+    This involved designing time-varying velocity fields — in other words, guiding the flow of the simulation to follow 
+    the patterns observed in real auroral dynamics.
+  </p>
+  <p>
+    Drawing from T.J. Hallinan’s theoretical model, auroral spirals form through a sequence of four distinct stages: 
+    <strong>(a)</strong> the appearance of an east-west aligned arc, <strong>(b)</strong> the arc undergoing undulatory instability 
+    and beginning to fold, <strong>(c)</strong> the development of multiple folds and distortions within the arc, and 
+    <strong>(d)</strong> the emergence of a structured spiral array. These phases are driven by evolving field-aligned currents 
+    and ionospheric feedback, capturing how auroral structures evolve under magnetospheric influence.
+  </p>
+  
+
+  <!-- Placeholder image for the arc-to-spiral sequence -->
+  <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+    <img src="img/aurora-warp.jpg" alt="Aurora development phases: arc, fold, distorted fold, spiral" style="max-width: 50%; height: auto;">
+    <p style="font-size: 0.9em;">
+      Simulation phases (top to bottom): arc, initial fold, distorted fold, spiral array. 
+      (Adapted from T.J. Hallinan, <em>Auroral Spirals 2. Theory</em>, J. Geophys. Res., 1981.)
+    </p>
+  </div>
+
+  <p>
+    In my simulation, I replicate this process by gradually transforming the velocity field in accordance with these 
+    stages. The aurora begins as a smooth, flowing arc and then transitions into increasingly complex patterns, 
+    culminating in the swirling spiral geometry characteristic of active auroras.
+  </p>
+
+  <p>
+    In my simulation, I replicate this process by gradually transforming the velocity field in accordance with these 
+    stages. The aurora begins as a smooth, flowing arc and then transitions into increasingly complex patterns, 
+    culminating in the swirling spiral geometry characteristic of active auroras.
+  </p>
+  <p>
+    Here's a preview of what it looks like in action. It still needs some work, but there is progress. The green coloring was added for aesthetic purposes, 
+    and I think it really helps to visualize what the final simulation might look like.
+  </p>
+  <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+    <video width="50%" height="auto" controls>
+      <source src="vid/video3.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</li>
   </ul>
 
   <footer>
