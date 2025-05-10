@@ -79,22 +79,19 @@
 </li>
 
 <li>
-  <h3>4. Aurora Motion – Spiral Simulation Phases</h3>
+  <h3>4. Aurora Motion - Spiral Simulation Phases</h3>
   <p>
-    After getting the fluid simulation running, I moved on to the core of the project: shaping how the aurora moves. 
-    This involved designing time-varying velocity fields — in other words, guiding the flow of the simulation to follow 
-    the patterns observed in real auroral dynamics.
+    After setting up the fluid simulation, I moved on to the core of the project: shaping how the aurora moves. 
+    This involved designing time-varying velocity fields — in other words, guiding the flow to mimic patterns 
+    observed in real auroral dynamics.
   </p>
   <p>
-    Drawing from T.J. Hallinan’s theoretical model, auroral spirals form through a sequence of four distinct stages: 
-    <strong>(a)</strong> the appearance of an east-west aligned arc, <strong>(b)</strong> the arc undergoing undulatory instability 
-    and beginning to fold, <strong>(c)</strong> the development of multiple folds and distortions within the arc, and 
-    <strong>(d)</strong> the emergence of a structured spiral array. These phases are driven by evolving field-aligned currents 
-    and ionospheric feedback, capturing how auroral structures evolve under magnetospheric influence.
+    Drawing from T.J. Hallinan's theoretical model, auroral spirals emerge through a sequence of four distinct phases: 
+    the formation of an aligned arc, the onset of undulatory instability causing the arc to fold, and the formation of a structured spiral array. 
+    These transitions are driven by evolving field-aligned currents and ionospheric feedback, capturing the influence of magnetospheric dynamics 
+    on auroral structure.
   </p>
-  
 
-  <!-- Placeholder image for the arc-to-spiral sequence -->
   <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
     <img src="img/aurora-warp.jpg" alt="Aurora development phases: arc, fold, distorted fold, spiral" style="max-width: 50%; height: auto;">
     <p style="font-size: 0.9em;">
@@ -104,18 +101,18 @@
   </div>
 
   <p>
-    In my simulation, I replicate this process by gradually transforming the velocity field in accordance with these 
-    stages. The aurora begins as a smooth, flowing arc and then transitions into increasingly complex patterns, 
-    culminating in the swirling spiral geometry characteristic of active auroras.
+    In my simulation, I emulate this progression by gradually transforming the velocity field across phases. 
+    The aurora starts as a smooth arc and evolves into increasingly complex structures, culminating in the swirling 
+    spiral geometry characteristic of highly active auroras.
   </p>
 
   <p>
-    In my simulation, I replicate this process by gradually transforming the velocity field in accordance with these 
-    stages. Currently, it only mimics the behavior of auroras by transforming the field using basic math geomteric shapes.
-    In the next stage I plan to look into the real dynamics of Aurora to perfect the animation.
+    While the transformation is currently driven by mathematical approximations using geometric patterns, 
+    it captures the essence of auroral evolution and provides a flexible framework for future refinement.
   </p>
+
   <p>
-    Here's a preview of what it looks like in action.
+    Here's a preview of the simulation in action:
   </p>
   <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
     <video width="50%" height="auto" controls>
@@ -123,6 +120,28 @@
       Your browser does not support the video tag.
     </video>
   </div>
+</li>
+<li>
+  <h3>5. Simulating Aurora Curtain</h3>
+  <p>
+    With the foundational phases of auroral motion defined and tested, I moved on to simulating the entire aurora curtain. 
+    I began by rescaling the velocity field to span a larger area, allowing the full curtain structure to emerge across the simulation space. 
+    Then, I introduced multiple centers of activity — localized regions where motion patterns like oscillations and swirls could develop independently.
+  </p>
+  <p>
+    As a first test, I synchronized the oscillations across all centers to observe the overall movement. 
+    Here's what the simulation looked like at that stage:
+  </p>
+  <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+    <video width="80%" height="auto" controls>
+      <source src="vid/video5.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <p>
+    Next, I plan to introduce noise and variation between the centers to make the motion appear more organic and less artificial. 
+    This should help the simulation feel more natural — closer to how real auroras are in the sky.
+  </p>
 </li>
   </ul>
 
