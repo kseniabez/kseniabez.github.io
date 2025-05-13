@@ -28,67 +28,62 @@
       <p>
         So, I went there, and I saw them. It was one of the coolest things I’ve ever experienced. Below you can see some pictures my friends and I took.
       </p>
-    
-      <!-- Image placeholder for Northern Lights -->
+      
       <div style="text-align: center; margin-bottom: 20px; display: flex; justify-content: center; gap: 20px;">
         <img src="img/IMG_3494.JPEG" alt="Northern Lights in Kiruna" style="max-width: 45%; height: auto;">
         <img src="img/IMG_3495.JPEG" alt="Northern Lights in Kiruna" style="max-width: 45%; height: auto;">
       </div>
+    
+      
     
       <p>
         And this is basically how I came up with the idea for a project. I want to replicate something beautiful.
       </p>
     </li>
     <li>
-      <h3>2. Specification and Plan</h3>
+      <h3>2. The Plan</h3>
       <p>
         After getting a rough idea of what I wanted to achieve, I began outlining a plan for implementing the Aurora simulation. It quickly became clear that the task was more complex than I initially anticipated.
       </p>
       <p>
         I realized that, in order to replicate the Northern Lights, there were two main challenges: first, creating the shape and movement of the aurora, and second, designing an appealing way to shade and render it. 
+        While preparing the project specification for my course coordinator, I recognized that tackling both of these aspects simultaneously might be too ambitious and difficult for the scope of the course.
+        As a result, I decided to narrow my focus to the animation of the aurora itself, leaving the shading for later. I hope to later enhance the simulation by integrating existing shaders to improve the visual appeal. 
+        For now, I'll prioritize perfecting the fluid simulation and the movement of the aurora, and will revisit the shading aspect once the core simulation is solid.
       </p>
-      <p>
-        While preparing the project specification for my course coordinator, I recognized that tackling both of these aspects simultaneously might be too ambitious and difficult for the scope of the course. As a result, I decided to narrow my focus to the animation of the aurora itself, leaving the shading for later. 
-      </p>
-      <p>
-        I hope to later enhance the simulation by integrating existing shaders to improve the visual appeal. For now, I'll prioritize perfecting the fluid simulation and the movement of the aurora, and will revisit the shading aspect once the core simulation is solid.
-      </p>
+      
     </li>
 
     <li>
-      <h3>3. 2D Fluid Simulation</h3>
-<p>
-  I just finished building the 2D fluid solver that will drive the aurora simulation. 
-  It's based on two incredibly helpful guides — <em>Fluid Simulation for Dummies</em> by Mike Ash and 
-  <em>Real-Time Fluid Dynamics for Games</em> by Jos Stam. These resources were essential for implementing the core fluid dynamics.
-</p>
-<p>
-  The solver produces beautifully soft, cloudy motion — exactly the effect I'm aiming for the auroras. 
-  The next step is to guide the flow so it mimics how the aurora naturally moves across the sky.
-</p>
-<p>
-  Here's a preview of what it looks like in action. The green coloring was added for aesthetic purposes, 
-  and I think it really helps to visualize what the final simulation might look like.
-</p>
-<div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
-  <video width="50%" height="auto" controls>
-    <source src="vid/video2.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</div>
-</li>
-
-<li>
-  <h3>4. Aurora Motion - Folds and Spirals</h3>
-  <p>
-    After setting up the fluid simulation, I moved on to the core of the project: shaping how the aurora moves. 
-    This involved designing the velocity fields, guiding the flow to mimic patterns observed in real aurora.
+  <h3>3. Aurora Dynamics - Folds and Spirals</h3>
+  <p>When working on the aurora animation, I discovered that auroras come in various shapes and sizes. To better understand how they form and what influences their shape, I did some research.</p>
+  <!-- Image placeholder for Northern Lights -->
+  <div style="text-align: center; margin-bottom: 20px; display: flex; justify-content: center; gap: 20px;">
+    <img src="img/1.png" alt="Aurora Example" style="max-width: 20%; height: auto;">
+    <img src="img/2.png" alt="Aurora Example" style="max-width: 20%; height: auto;">
+    <img src="img/3.png" alt="Aurora Example" style="max-width: 20%; height: auto;">
+    <img src="img/4.png" alt="Aurora Example" style="max-width: 20%; height: auto;">
+  </div>
+  <p style="font-size: 0.9em; text-align: center; margin: auto;">
+    Examples of different types of auroras from the <a href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018JA025274">Oslo Aurora THEMIS (OATH) dataset (2018)</a>.
   </p>
   <p>
-    Drawing from T.J. Hallinan's theoretical model, auroral spirals emerge through a sequence of four distinct phases: 
-    the formation of an aligned arc, the onset of undulatory instability causing the arc to fold, and the formation of a structured spiral array. 
-    These transitions are driven by evolving field-aligned currents and ionospheric feedback, capturing the influence of magnetospheric dynamics 
-    on auroral structure.
+    As I learned more about how auroras work, I realized that their dynamics are quite complex. 
+    As a result, I decided to focus on the visual aspect rather than an exact physical representation.
+    But I still wanted to incorporate some physics into the animation.
+  </p>
+  <p>
+    During my research on the different types of auroras, I was particularly intrigued by auroral folds, curls, and spirals.
+    At first, I simply liked how beautiful they looked. But later I also found that they could be roughly described using
+    the Kelvin-Helmholtz instability (KHI)—a phenomenon commonly seen in liquids and fluids! It actually can also occur in plasma
+    and influence the nother lights.
+  </p>
+  <p>
+    This was a happy accident! As it turns out that my idea of animating auroras using fluid dynamics had some scientific basis behind it.
+  </p>
+  <p>
+    T.J. Hallinan actually described a theoretical model of the formation auroral spirals. Below is a figure on how the auroral curtain is
+    shaped by currents going into separate directions and with some circular petrubations cause a fold and then a spiral to appear.
   </p>
 
   <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
@@ -98,34 +93,11 @@
       (Adapted from T.J. Hallinan, <em>Auroral Spirals 2. Theory</em>, J. Geophys. Res., 1981.)
     </p>
   </div>
-
-  <p>
-    In my simulation, I emulate this progression by applying a steady velocity field along my wave curtain.
-  </p>
-
-  <p>
-    Here's a preview of my fold and spiral simulation, imitating KHI instability. It still needs some adjustment,
-    but it's nice to see something recognizable as a part of an aurora.
-  </p>
-  <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
-    <video width="50%" height="auto" controls>
-      <source src="vid/video9.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
-
-  <p>Taking a look at the real images of auroral folds, we can see that the simulation indeed resembles a little the real effect. </p>
-
-  <div style="text-align: center; margin-bottom: 20px; display: flex; justify-content: center; gap: 20px;">
-        <img src="img/fold1.png" alt="Aurora Fold" style="max-width: 45%; height: auto;">
-        <img src="img/fold2.png" alt="Aurora Fold" style="max-width: 45%; height: auto;">
-  </div>
-  <p style="font-size: 0.9em; text-align: center; margin: auto;">
-    Examples of auroral folds from the <a href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018JA025274">Oslo Aurora THEMIS (OATH) dataset (2018)</a>.
-  </p>
 </li>
 <li>
-  <h3>5. Simulating the Auroral Sheet</h3>
+  <h3>4. Implementing Fluid Dynamics</h3>
+  <p>
+  </p>
 </li>
   </ul>
 
