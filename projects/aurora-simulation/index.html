@@ -14,7 +14,7 @@
   </p>
 
   <div style="text-align: center; margin-bottom: 40px;">
-    <a href="https://github.com/kseniabez/aurora-simulation" target="_blank">GitHub Repository</a>
+    <a href="https://github.com/kseniabez/euler-fluid-simulation" target="_blank">GitHub Repository</a>
   </div>
 
   <h2 style="margin-bottom: 10px;">Development Blog</h2>
@@ -97,7 +97,29 @@
 <li>
   <h3>4. Implementing Fluid Dynamics</h3>
   <p>
+    As I said in the previous post I decided to implement the auroral folds and curls using Kelvin-Helmholtz instability. As a base for my
+    simulation I decided to use Euler fluid equations. I debated using Navier-Strokes equations method, which are considered more physically
+    accurate. But then decided not to, since my simulation is not aiming for percise physical accuracy, rather on an interpratation.
   </p>
+  <p>
+    And with a solid plan and math in hands I turned to coding. These tutorials were extremely useful and helped me not get stuck:
+    <a href="https://levelup.gitconnected.com/create-your-own-finite-volume-fluid-simulation-with-python-8f9eab0b8305">
+      Create Your Own Finite Volume Fluid Simulation (With Python)</a> by Philip Mocz, and <a href="https://www.youtube.com/watch?v=iKAVRgIrUOU">
+        How to write an Eulerian fluid simulator with 200 lines of code</a> by Ten Minutes Physics on YouTube.
+  </p>
+  <p>
+    A few errors and bug fixes later, I got my first auroral fold spiral animation. I was extremely happy by the result, because it was the first
+    time I was able to see something roughly similar:
+  </p>
+  <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+  <video width="50%" height="auto" controls>
+    <source src="vid/vid1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <p>
+    Next I decided to try to simulate not just one fold, but a longer sheet.
+  </p>
+</div>
 </li>
   </ul>
 
