@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Automatic Control of a TurtleBot3 Robot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h1 class="title">
+  <span>Automatic Control of</span>
+  <span>a TurtleBot3 Differential-Drive Robot</span>
+</h1>
+
+<p>
+  Implementation of an automatic controller for a TurtleBot3 differential-drive robot.
+  Developed as part of the KTH course <em>EL2450 – Hybrid and Embedded Control Systems</em> (VT25).
+</p>
+
+<ul>
+  <li>
+    <p>
+      We modeled the robot’s kinematics and discretized the workspace into regions,
+      which were abstracted as a labeled transition system with safety and behavior
+      constraints such as obstacle avoidance and repeated region visits. Based on this
+      model, we derived a valid high-level plan that the robot could follow.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      At the control level, we developed a hybrid controller consisting of an orientation
+      controller and a line-following controller. The robot first aligns itself toward the
+      target region and then drives along a straight path to its center while minimizing
+      deviations. The controllers were designed and analyzed in discrete time, implemented
+      in C, and tuned to ensure stability and safety.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      The correctness of the approach was verified using a simulation environment to test
+      convergence, robustness, and safety properties. Finally, the controller was deployed
+      on a real TurtleBot3 robot and validated through a video demonstration showing the
+      robot autonomously executing the planned trajectory.
+    </p>
+  </li>
+</ul>
+
+<div class="project-image">
+  <img src="img/robot-simulation.png" alt="TurtleBot3 simulation environment">
+  <p class="caption">Simulation environment provided by the course coordinators.</p>
+</div>
+
+<div class="project-image">
+  <video width="80%" height="auto" controls>
+    <source src="vid/robot-demonstration.MP4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <p class="caption">The hybrid controller running on the real TurtleBot3 robot.</p>
+</div>
+
+<footer>
+  <a href="../../index.html">← Back to Home</a>
+</footer>
+
+</body>
+</html>
