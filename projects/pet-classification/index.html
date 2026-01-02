@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Transfer Learning and Image Classification</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h1>Transfer Learning and Image Classification</h1>
+
+<p>
+      This project investigates transfer learning and semi-supervised learning for image classification
+    using the <a href="https://www.robots.ox.ac.uk/~vgg/data/pets/">Oxford-IIIT Pet Dataset</a>. 
+    Made for a course at KTH DD2424 Deep Learning in Data Science.
+ 
+</p>
+
+<div style="text-align: center; margin-bottom: 40px;">
+  <a href="https://github.com/kseniabez/movie-app" target="_blank">Project Report</a>
+</div>
+
+<ul>
+
+  <li>
+    <h3>1. Motivation & Data</h3>
+    <p>
+      This project started as an attempt to understand how much we can rely on
+      <strong>pre-trained models</strong>, and whether <strong>semi-supervised learning</strong>
+      can meaningfully reduce the need for labeled data without destroying performance.
+    </p>
+    <p>
+      My team and I worked with the <a href="https://www.robots.ox.ac.uk/~vgg/data/pets/">Oxford-IIIT Pet Dataset</a>, which contains 37 different cat and dog breeds.
+      While it may sound simple at first, the dataset is surprisingly challenging — many breeds
+      look extremely similar, while images within the same class can vary significantly.
+    </p>
+
+    <div style="text-align: center; margin-bottom: 20px; display: flex; justify-content: center; gap: 20px;">
+      <img src="img/data_example.png" alt="Pet Dataset Sample" style="max-width: 80%; height: auto;">
+    </div>
+
+    <p style="font-size: 0.9em; text-align: center;">
+      Sample images from the <a href="https://www.robots.ox.ac.uk/~vgg/data/pets/">Oxford-IIIT Pet Dataset</a> illustrating fine-grained differences.
+    </p>
+  </li>
+
+  <li>
+    <h3>3. Transfer Learning with ResNet50</h3>
+    <p>
+      All experiments were based on a <strong>ResNet50</strong> convolutional neural network
+      pre-trained on ImageNet. We began with a simple binary classification task
+      (cat vs. dog), using feature extraction by freezing all convolutional layers and
+      training only the final classification head.
+    </p>
+    <p>
+      From there, we extended the model to predict all 37 pet breeds and explored different
+      fine-tuning strategies, including training multiple layers simultaneously and
+      gradual un-freezing, where layers are incrementally unfrozen during training
+      to reduce overfitting.
+    </p>
+  </li>
+
+  <li>
+    <h3>4. Semi-Supervised Learning: FixMatch</h3>
+    <p>
+      To push the project further, we implemented the <a href="https://arxiv.org/abs/2001.07685">FixMatch</a> semi-supervised
+      learning algorithm, introduced by Sogn et. la (2020). FixMatch combines pseudo-labeling with consistency regularization,
+      using weak and strong data augmentations to learn effectively from unlabeled data.
+    </p>
+
+    <p>
+      The idea is simple but powerful: if the model is confident about a prediction on a
+      weakly augmented image, it should make the same prediction for a strongly augmented
+      version of that image.
+    </p>
+
+    <div style="text-align: center; margin-bottom: 20px;">
+      <img src="img/augmentation.png" alt="FixMatch Augmentations"
+           style="max-width: 90%; height: auto;">
+    </div>
+
+    <p style="font-size: 0.9em; text-align: center;">
+      Weak vs. strong augmentations used by the FixMatch algorithm.
+    </p>
+  </li>
+
+  <li>
+  <h3>5. Results</h3>
+
+  <p>
+    Overall, the experiments demonstrate that transfer learning with a pre-trained
+    <strong>ResNet50</strong> model is highly effective for both binary and fine-grained
+    image classification on the Oxford-IIIT Pet Dataset.
+  </p>
+
+  <ul>
+    <li>
+      <strong>Binary classification (Cat vs. Dog):</strong><br>
+      Feature extraction alone was sufficient to reach very high performance, achieving
+      <strong>99.29%</strong> test accuracy. This confirms that pre-trained ImageNet features
+      transfer extremely well to simple classification tasks.
+    </li>
+
+    <li>
+      <strong>Breed classification (37 classes):</strong><br>
+      Training only the final layer reached ~<strong>89%</strong> test accuracy, while
+      fine-tuning deeper layers significantly improved performance.
+      The best results were obtained using <strong>gradual un-freezing</strong>, which reduced
+      overfitting compared to simultaneous fine-tuning.
+      The final model achieved a test accuracy of <strong>92.37%</strong>.
+    </li>
+
+    <li>
+      <strong>Fine-tuning strategies:</strong><br>
+      Gradual un-freezing consistently outperformed simultaneous fine-tuning, with optimal
+      performance when unfreezing up to 3-4 layers. Fine-tuning too many layers at once led
+      to overfitting, it was indicated by declining validation accuracy.
+    </li>
+
+    <li>
+      <strong>Imbalanced classes:</strong><br>
+      Class imbalance reduced test accuracy to <strong>86.15%</strong> when left unaddressed.
+      Applying weighted loss functions or weighted sampling improved results to ~<strong>89.7%</strong>,
+      although neither method fully compensated for the imbalance.
+    </li>
+
+    <li>
+      <strong>Semi-supervised learning (FixMatch):</strong><br>
+      FixMatch substantially improved performance in low-label regimes.
+      With only <strong>2 labeled images per class</strong>, accuracy increased from ~12%
+      (supervised only) to <strong>72.9%</strong>. Even with just <strong>1 labeled image per class</strong>,
+      FixMatch achieved ~<strong>50%</strong> accuracy, while the supervised baseline failed.
+
+      <table style="margin: 20px auto; border-collapse: collapse; width: 90%; max-width: 700px;">
+  <thead>
+    <tr>
+      <th style="border-bottom: 2px solid #ccc; padding: 10px;">Images per Class</th>
+      <th style="border-bottom: 2px solid #ccc; padding: 10px;">Labeled Data (%)</th>
+      <th style="border-bottom: 2px solid #ccc; padding: 10px;">Supervised Only</th>
+      <th style="border-bottom: 2px solid #ccc; padding: 10px;">FixMatch</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding: 8px; text-align: center;">50</td>
+      <td style="padding: 8px; text-align: center;">60%</td>
+      <td style="padding: 8px; text-align: center;">89.48%</td>
+      <td style="padding: 8px; text-align: center;"><strong>90.35%</strong></td>
+    </tr>
+    <tr>
+      <td style="padding: 8px; text-align: center;">20</td>
+      <td style="padding: 8px; text-align: center;">25%</td>
+      <td style="padding: 8px; text-align: center;">88.42%</td>
+      <td style="padding: 8px; text-align: center;">87.64%</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px; text-align: center;">10</td>
+      <td style="padding: 8px; text-align: center;">12.5%</td>
+      <td style="padding: 8px; text-align: center;">70.24%</td>
+      <td style="padding: 8px; text-align: center;"><strong>86.41%</strong></td>
+    </tr>
+    <tr>
+      <td style="padding: 8px; text-align: center;">2</td>
+      <td style="padding: 8px; text-align: center;">2.5%</td>
+      <td style="padding: 8px; text-align: center;">11.99%</td>
+      <td style="padding: 8px; text-align: center;"><strong>72.91%</strong></td>
+    </tr>
+    <tr>
+      <td style="padding: 8px; text-align: center;">1</td>
+      <td style="padding: 8px; text-align: center;">1%</td>
+      <td style="padding: 8px; text-align: center;">5.56%</td>
+      <td style="padding: 8px; text-align: center;"><strong>50.15%</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="font-size: 0.9em; text-align: center; ">
+  Test accuracy comparison between supervised learning and FixMatch under varying
+  amounts of labeled data.
+</p>
+
+    </li>
+  </ul>
+
+  <p>
+    These results highlight the importance of both transfer learning and training strategy:
+    while pre-trained models provide a strong foundation, careful fine-tuning and
+    semi-supervised techniques are critical when labeled data is scarce.
+  </p>
+
+  <p>
+  On a personal level, this project helped me better understand how neural networks behave
+  during training. It gave me hands on expirience, which I plan to use in my future projects.
+</li>
+
+
+</ul>
+
+<footer>
+  <a href="../../index.html">← Back to Home</a>
+</footer>
+
+</body>
+</html>
